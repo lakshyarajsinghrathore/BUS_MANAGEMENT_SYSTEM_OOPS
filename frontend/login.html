@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>UniRoute — Login</title>
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="css/style.css?v=clean1"/>
+</head>
+<body class="login-page">
+
+  <!-- Animated background blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="login-wrapper">
+
+    <!-- Left panel — branding -->
+    <div class="login-left">
+      <div class="brand">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <div class="brand-icon" style="margin-bottom: 16px;">
+            <img src="images/logo-icon.png" alt="UniRoute Logo" class="brand-logo-img"/>
+          </div>
+          <h1 class="brand-name">UniRoute</h1>
+        </a>
+        <p class="brand-tagline">Real-time college bus tracking system</p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <span class="feature-dot"></span>
+          <span>Live GPS tracking on map</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-dot"></span>
+          <span>Driver route planning</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-dot"></span>
+          <span>Real-time stop updates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel — login form -->
+    <div class="login-right">
+      <div class="login-card">
+        <div class="mobile-brand-bar">
+          <a href="index.html" class="mobile-brand-link">
+            <img src="images/logo-icon.png" alt="UniRoute Logo"/>
+            <span>UniRoute</span>
+          </a>
+          <a href="index.html" class="mobile-home-link">&larr; Home</a>
+        </div>
+        <div class="login-card-header">
+          <h2>Welcome back</h2>
+          <p>Sign in with your college credentials</p>
+        </div>
+
+        <div id="error-banner" class="error-banner hidden">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          <span id="error-text">Invalid credentials</span>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="field-group">
+            <label for="college-id">College ID</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+              </svg>
+              <input
+                id="college-id"
+                type="text"
+                placeholder="e.g. CS2021001"
+                autocomplete="username"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+              </svg>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              />
+              <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Toggle password">
+                <svg id="eye-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-login" id="login-btn">
+            <span id="btn-text">Sign In</span>
+            <span id="btn-spinner" class="spinner hidden"></span>
+          </button>
+        </form>
+
+        <p class="login-footer">
+          Use your college-issued ID and password.<br/>
+          Contact admin if you need access.
+        </p>
+        <div class="login-link">
+          New here? <a href="signup.html">Create an account</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    // Auto-forward logged-in user directly to their dashboard
+    const existingToken = getToken();
+    const existingRole  = getRole();
+    if (existingToken && !window.location.search.includes('expired=1') && !window.location.search.includes('logout=1')) {
+      if (existingRole === 'driver') {
+        window.location.replace('driver/dashboard.html');
+      } else if (existingRole === 'passenger') {
+        window.location.replace('passenger/dashboard.html');
+      }
+    }
+
+    const form      = document.getElementById('login-form');
+    const btnText   = document.getElementById('btn-text');
+    const btnSpinner= document.getElementById('btn-spinner');
+    const errBanner = document.getElementById('error-banner');
+    const errText   = document.getElementById('error-text');
+    const togglePw  = document.getElementById('toggle-pw');
+    const pwInput   = document.getElementById('password');
+
+    // Show/hide password
+    togglePw.addEventListener('click', () => {
+      const show = pwInput.type === 'password';
+      pwInput.type = show ? 'text' : 'password';
+      document.getElementById('eye-icon').style.opacity = show ? '0.5' : '1';
+    });
+
+    function showError(msg) {
+      errText.textContent = msg;
+      errBanner.classList.remove('hidden');
+    }
+    function hideError() {
+      errBanner.classList.add('hidden');
+    }
+    function setLoading(on) {
+      btnText.classList.toggle('hidden', on);
+      btnSpinner.classList.toggle('hidden', !on);
+      document.getElementById('login-btn').disabled = on;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+
+      const collegeId = document.getElementById('college-id').value.trim();
+      const password  = pwInput.value;
+
+      if (!collegeId || !password) {
+        showError('Please fill in both fields.');
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const data = await apiCall('POST', '/auth/login', { college_id: collegeId, password });
+        if (data.error) {
+          showError(data.error);
+        } else {
+          localStorage.setItem('bus_token', data.token);
+          localStorage.setItem('bus_role',  data.role);
+          localStorage.setItem('bus_name',  data.name);
+          localStorage.setItem('bus_id',    data.id);
+
+          if (data.role === 'driver') {
+            window.location.href = 'driver/dashboard.html';
+          } else {
+            window.location.href = 'passenger/dashboard.html';
+          }
+        }
+      } catch (err) {
+        showError('Cannot reach server. Make sure backend is running.');
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>

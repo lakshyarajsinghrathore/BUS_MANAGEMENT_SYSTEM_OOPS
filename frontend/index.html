@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>UniRoute — Extraordinary Campus Transit &amp; Telemetry Matrix</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="stylesheet" href="css/landing.css?v=awwwards-v1" />
+</head>
+<body class="landing-page">
+
+  <!-- Custom Cinematic Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- Atmospheric Film Grain & Aurora Light Gradients -->
+  <div class="cinematic-grain"></div>
+  <div class="aurora-glow-1"></div>
+  <div class="aurora-glow-2"></div>
+
+  <!-- ── Navigation Telemetry HUD ─────────────────────────────────────────── -->
+  <header class="nav-hud">
+    <a href="#" class="nav-brand" aria-label="UniRoute Home">
+      <img src="images/logo-transparent.png" alt="UniRoute Insignia" />
+      <span class="nav-brand-text">UniRoute</span>
+    </a>
+
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-actions">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-actions" id="nav-actions">
+      <a href="#consoles" class="nav-link">Consoles</a>
+      <a href="#telemetry" class="nav-link">Telemetry</a>
+      <a href="#specs" class="nav-link">Matrix Specs</a>
+      <a href="login.html" class="btn-expedition">Access Portal</a>
+    </div>
+  </header>
+
+  <!-- ── Hero / The Voyage Entry ──────────────────────────────────────────── -->
+  <section class="hero-voyage">
+    <div class="container">
+      <h1 class="hero-large-title">
+        Campus transit,<br />
+        <i>reimagined.</i>
+      </h1>
+
+      <p class="hero-desc">
+        Setting foot across campus should be effortless. UniRoute unites student commuters and shuttle fleet pilots with real-time geodesic telemetry, dynamic capacity matrices, and zero-latency vector streaming.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="signup.html" class="btn-expedition">Initiate Journey &rarr;</a>
+        <a href="#consoles" class="expedition-label hero-explore-link">Explore Consoles [ &darr; ]</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section I: The Consoles (Museum Grade Framing) ────────────────────── -->
+  <section class="cinematic-section" id="consoles">
+    <div class="container">
+      <div class="section-header-voyage">
+        <div class="expedition-label" style="margin-bottom: 1rem;">
+          THE CONSOLES
+        </div>
+        <h2 class="section-editorial-title">
+          Purpose-built consoles for riders and shuttle pilots.
+        </h2>
+      </div>
+
+      <div class="fleet-viewport-container">
+        <!-- Passenger Interface Viewport -->
+        <div class="tilt-wrapper">
+          <div class="fleet-frame">
+            <div class="fleet-meta">
+              <span class="expedition-label">COMMUTER INTERFACE &bull; PORTAL 01</span>
+            </div>
+
+            <div class="fleet-img-wrap">
+              <img src="images/screenshot-passenger.png" alt="Passenger Real-time Navigation Console" class="fleet-img" />
+            </div>
+
+            <div class="fleet-card-footer">
+              <div>
+                <h3 class="font-serif" style="font-size: 1.8rem; font-weight: 300; margin-bottom: 8px;">Passenger Navigation</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 400px;">
+                  Geodesic nearest-stop radar, sub-second shuttle marker interpolation, and real-time seat occupancy indicators.
+                </p>
+              </div>
+              <a href="login.html?role=passenger" class="expedition-label fleet-launch-link">Launch &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Driver Interface Viewport -->
+        <div class="tilt-wrapper">
+          <div class="fleet-frame">
+            <div class="fleet-meta">
+              <span class="expedition-label">PILOT MISSION CONTROL &bull; PORTAL 02</span>
+            </div>
+
+            <div class="fleet-img-wrap">
+              <img src="images/screenshot-driver.png" alt="Driver Fleet Management Console" class="fleet-img" />
+            </div>
+
+            <div class="fleet-card-footer">
+              <div>
+                <h3 class="font-serif" style="font-size: 1.8rem; font-weight: 300; margin-bottom: 8px;">Driver Console</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 400px;">
+                  Direct high-frequency GPS coordinate broadcasting, dynamic stop traversal, and onboard passenger headcount management.
+                </p>
+              </div>
+              <a href="login.html?role=driver" class="expedition-label fleet-launch-link">Launch &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section II: Expedition Telemetry & Simulator ──────────────────────── -->
+  <section class="cinematic-section" id="telemetry">
+    <div class="container">
+      <div class="section-header-voyage">
+        <div class="expedition-label" style="margin-bottom: 1rem;">
+          REAL-TIME TELEMETRY MATRIX
+        </div>
+        <h2 class="section-editorial-title">
+          Direct low-latency WebSocket broadcast via native C++.
+        </h2>
+      </div>
+
+      <div class="telemetry-matrix">
+        <!-- Live JSON Telemetry Stream -->
+        <div class="telemetry-panel">
+          <div class="telemetry-panel-title">
+            <span class="expedition-label">STREAM: C++ CROW WS://UNIROUTE.LOCAL:8080/WS</span>
+          </div>
+
+          <div class="code-stream-frame" id="live-telemetry-stream">
+<pre>{
+  <span class="code-key">"event"</span>: <span class="code-str">"EXPEDITION_TELEMETRY"</span>,
+  <span class="code-key">"route_identifier"</span>: <span class="code-str">"NORTH_CIRCUIT_EXPRESS"</span>,
+  <span class="code-key">"vehicle_id"</span>: <span class="code-str">"ROVER-01"</span>,
+  <span class="code-key">"coordinates"</span>: {
+    <span class="code-key">"latitude"</span>: <span class="code-num" id="telemetry-lat">24.588042</span>,
+    <span class="code-key">"longitude"</span>: <span class="code-num" id="telemetry-lng">73.715019</span>,
+    <span class="code-key">"bearing_deg"</span>: <span class="code-num" id="telemetry-bearing">142.6</span>
+  },
+  <span class="code-key">"speed_kmh"</span>: <span class="code-num" id="telemetry-speed">32.4</span>,
+  <span class="code-key">"capacity_matrix"</span>: {
+    <span class="code-key">"seats_occupied"</span>: <span class="code-num" id="telemetry-seats">18</span>,
+    <span class="code-key">"seats_total"</span>: <span class="code-num">32</span>,
+    <span class="code-key">"load_factor"</span>: <span class="code-str">"56.2%"</span>
+  },
+  <span class="code-key">"timestamp_utc"</span>: <span class="code-str" id="telemetry-timestamp">2026-10-06T14:48:22.019Z</span>
+}</pre>
+          </div>
+        </div>
+
+        <!-- Anime.js Vector Circuit Simulator -->
+        <div class="telemetry-panel">
+          <div class="telemetry-panel-title telemetry-panel-title--split">
+            <span class="expedition-label">VECTOR GEODESIC RADAR</span>
+            <span class="expedition-label" style="color: var(--accent-emerald);">● SIMULATOR SYNCHRONIZED</span>
+          </div>
+
+          <div class="vector-canvas" id="vector-canvas">
+            <div class="vector-stage" id="vector-stage">
+              <svg class="vector-svg-map" viewBox="0 0 600 350">
+                <!-- Coordinate Grid System -->
+                <line x1="50" y1="50" x2="550" y2="50" stroke="rgba(255,255,255,0.03)" />
+                <line x1="50" y1="175" x2="550" y2="175" stroke="rgba(255,255,255,0.03)" />
+                <line x1="50" y1="300" x2="550" y2="300" stroke="rgba(255,255,255,0.03)" />
+
+                <!-- Vector Circuit Path -->
+                <path id="vector-orbit-path" class="vector-path" d="M100,100 C200,40 400,60 500,120 C560,180 520,280 440,300 C300,320 180,260 100,240 C50,200 40,140 100,100 Z" />
+
+                <!-- Waypoints -->
+                <circle cx="100" cy="100" r="4" class="vector-waypoint" />
+                <circle cx="500" cy="120" r="4" class="vector-waypoint" />
+                <circle cx="440" cy="300" r="4" class="vector-waypoint" />
+                <circle cx="100" cy="240" r="4" class="vector-waypoint" />
+
+                <text x="115" y="95" fill="#71717a" font-family="'JetBrains Mono'" font-size="9">STOP 01 &bull; STUDENT UNION</text>
+                <text x="380" y="110" fill="#71717a" font-family="'JetBrains Mono'" font-size="9">STOP 02 &bull; ENGINEERING QUAD</text>
+                <text x="320" y="325" fill="#71717a" font-family="'JetBrains Mono'" font-size="9">STOP 03 &bull; CENTRAL LIBRARY</text>
+                <text x="60" y="260" fill="#71717a" font-family="'JetBrains Mono'" font-size="9">STOP 04 &bull; SPORTS DOME</text>
+              </svg>
+
+              <!-- Vector Rover Puck -->
+              <div class="vector-rover" id="vector-rover">
+                <div class="rover-hud" id="rover-hud-text">ROVER-01 &bull; 32 KM/H</div>
+                <div class="rover-dot">
+                  <div class="rover-pulse"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section III: Interactive Sensors & Radar ───────────────────────────── -->
+  <section class="cinematic-section" id="sensors">
+    <div class="container">
+      <div class="section-header-voyage">
+        <div class="expedition-label" style="margin-bottom: 1rem;">
+          SENSORS &amp; GEODESIC MATRICES
+        </div>
+        <h2 class="section-editorial-title">
+          Precision instrumentation in the palm of your hand.
+        </h2>
+      </div>
+
+      <div class="widget-row">
+        <!-- Interactive Seat Capacity Stepper -->
+        <div class="widget-cell">
+          <div>
+            <div class="widget-header">
+              <span class="expedition-label">SENSOR 01 // SEAT CAPACITY HUD</span>
+            </div>
+            <div class="seat-matrix-val" id="seat-count-display">18 <span style="font-size: 1.5rem; color: var(--text-ghost);">/ 32</span></div>
+            <div class="stepper-controls">
+              <button class="stepper-btn" onclick="adjustSeatCount(-1)">&minus;</button>
+              <button class="stepper-btn" onclick="adjustSeatCount(1)">&#43;</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="capacity-bar-bg">
+              <div class="capacity-bar-fill" id="seat-bar-fill"></div>
+            </div>
+            <div class="capacity-meta-row">
+              <span class="expedition-label" id="seat-status-label">OPTIMAL BOARDING (56%)</span>
+              <span class="expedition-label" id="seat-remaining-label">14 SEATS REMAINING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Geodesic Radar Proximity -->
+        <div class="widget-cell">
+          <div>
+            <div class="widget-header">
+              <span class="expedition-label">SENSOR 02 // HAVERSINE RADAR</span>
+            </div>
+            <div class="radar-display active">
+              <span>Central Library Stop</span>
+              <span style="color: var(--accent-emerald);">0.12 km &bull; 2 min walk</span>
+            </div>
+            <div class="radar-display">
+              <span>Engineering Complex</span>
+              <span style="color: var(--text-muted);">0.48 km &bull; 6 min walk</span>
+            </div>
+            <div class="radar-display">
+              <span>Sports Dome</span>
+              <span style="color: var(--text-muted);">0.85 km &bull; 11 min walk</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="expedition-label">[ HAVERSINE SPHERICAL DISTANCE &bull; 0.05% MARGIN ]</span>
+          </div>
+        </div>
+
+        <!-- Persistent SQLite Session WAL -->
+        <div class="widget-cell">
+          <div>
+            <div class="widget-header">
+              <span class="expedition-label">ENGINE 03 // SESSION DURABILITY</span>
+            </div>
+            <h3 class="font-serif" style="font-size: 1.8rem; font-weight: 300; margin-bottom: 12px; color: #fff;">
+              SQLite WAL Persistence
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.7;">
+              Session tokens are durably committed with write-ahead logging (WAL) and automated timestamped cleanup sweeps, surviving server restarts with zero auth loss.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section IV: Voyage Directory (Minimalist Awwwards Footer) ──────────── -->
+  <footer class="fleet-directory" id="specs" style="position: relative; overflow: hidden;">
+    <!-- 3D 16-bit College Bus Background Element -->
+    <div id="footer-bus-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; cursor: grab; pointer-events: auto;">
+      <!-- Three.js Canvas injected here -->
+    </div>
+
+    <div class="container" style="position: relative; z-index: 10; pointer-events: none;">
+      <div class="fleet-dir-grid" style="pointer-events: auto;">
+        <div>
+          <div class="fleet-dir-brand">UniRoute</div>
+          <p class="fleet-dir-desc">
+            An extraordinary campus transit matrix built with native C++ Crow, WebSockets, and SQLite.
+          </p>
+        </div>
+
+        <div>
+          <div class="fleet-col-title">Navigation</div>
+          <ul class="fleet-links">
+            <li><a href="login.html?role=passenger">Passenger Portal</a></li>
+            <li><a href="login.html?role=driver">Driver Console</a></li>
+            <li><a href="signup.html">Create Credentials</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="fleet-col-title">Architecture</div>
+          <ul class="fleet-links">
+            <li><a href="#telemetry">C++ Crow Engine</a></li>
+            <li><a href="#telemetry">WebSocket Protocols</a></li>
+            <li><a href="#sensors">SQLite WAL Storage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fleet-legals" style="pointer-events: auto;">
+        <div>&copy; 2026 UNIROUTE EXPEDITION MATRIX. ALL RIGHTS RESERVED.</div>
+        <div>DESIGNED FOR EXTRAORDINARY COMMUTING</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Lenis Smooth Scroll Engine & Vector Simulator Scripts ─────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+  <script>
+    /* 0. Mobile Navigation Drawer */
+    const navToggle = document.getElementById('nav-toggle');
+    const navActions = document.getElementById('nav-actions');
+    if (navToggle && navActions) {
+      const closeNav = () => {
+        navActions.classList.remove('is-open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = navActions.classList.toggle('is-open');
+        navToggle.classList.toggle('is-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      navActions.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
+      document.addEventListener('click', (e) => {
+        if (!navActions.contains(e.target) && !navToggle.contains(e.target)) closeNav();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNav();
+      });
+    }
+
+    /* 1. Lenis 120fps Smooth Scrolling */
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      smoothTouch: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    /* 2. Custom Magnetic Cursor (Fine pointers / Desktop only) */
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (isFinePointer && cursorDot && cursorRing) {
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let ringX = mouseX, ringY = mouseY;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      });
+
+      function renderCursorRing() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+        requestAnimationFrame(renderCursorRing);
+      }
+      requestAnimationFrame(renderCursorRing);
+
+      document.querySelectorAll('a, button, .fleet-frame, .stepper-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+    }
+
+    /* 2b. Responsive Vector Stage Scaling */
+    (function initVectorScale() {
+      const canvas = document.getElementById('vector-canvas');
+      const stage = document.getElementById('vector-stage');
+      if (!canvas || !stage) return;
+      const updateScale = () => {
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        if (w > 0 && h > 0) {
+          const scale = Math.min(w / 600, h / 350);
+          stage.style.transform = `scale(${scale})`;
+        }
+      };
+      updateScale();
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updateScale).observe(canvas);
+      } else {
+        window.addEventListener('resize', updateScale);
+      }
+    })();
+
+    /* 3. Anime.js Vector Transit Simulation */
+    const orbitPath = anime.path('#vector-orbit-path');
+    const roverEl = document.getElementById('vector-rover');
+    const roverHud = document.getElementById('rover-hud-text');
+
+    if (roverEl) {
+      anime({
+        targets: '#vector-rover',
+        translateX: orbitPath('x'),
+        translateY: orbitPath('y'),
+        rotate: orbitPath('angle'),
+        easing: 'linear',
+        duration: 18000,
+        loop: true,
+        update: function(anim) {
+          const speed = Math.round(28 + Math.sin(anim.progress / 10) * 8);
+          if (roverHud) roverHud.textContent = `ROVER-01 • ${speed} KM/H`;
+        }
+      });
+    }
+
+    /* 4. Live Telemetry Stream Ticker */
+    let telemetrySeats = 18;
+    function adjustSeatCount(delta) {
+      telemetrySeats = Math.max(0, Math.min(32, telemetrySeats + delta));
+      const seatCountDisplay = document.getElementById('seat-count-display');
+      const seatBarFill = document.getElementById('seat-bar-fill');
+      const seatStatusLabel = document.getElementById('seat-status-label');
+      const seatRemainingLabel = document.getElementById('seat-remaining-label');
+
+      if (seatCountDisplay) {
+        seatCountDisplay.innerHTML = `${telemetrySeats} <span style="font-size: 1.5rem; color: var(--text-ghost);">/ 32</span>`;
+      }
+      if (seatRemainingLabel) {
+        seatRemainingLabel.textContent = `${32 - telemetrySeats} SEATS REMAINING`;
+      }
+      if (seatBarFill) {
+        const pct = (telemetrySeats / 32) * 100;
+        seatBarFill.style.width = `${pct}%`;
+        if (pct > 80) {
+          seatBarFill.style.backgroundColor = 'var(--accent-amber)';
+          if (seatStatusLabel) seatStatusLabel.textContent = `HIGH CONGESTION (${Math.round(pct)}%)`;
+        } else {
+          seatBarFill.style.backgroundColor = 'var(--text-pure)';
+          if (seatStatusLabel) seatStatusLabel.textContent = `OPTIMAL BOARDING (${Math.round(pct)}%)`;
+        }
+      }
+    }
+
+    // Interval to update live json feed
+    setInterval(() => {
+      const latEl = document.getElementById('telemetry-lat');
+      const lngEl = document.getElementById('telemetry-lng');
+      const speedEl = document.getElementById('telemetry-speed');
+      const timeEl = document.getElementById('telemetry-timestamp');
+
+      if (latEl && lngEl) {
+        const randLat = (24.588042 + (Math.random() - 0.5) * 0.0008).toFixed(6);
+        const randLng = (73.715019 + (Math.random() - 0.5) * 0.0008).toFixed(6);
+        const randSpeed = (30 + Math.random() * 5).toFixed(1);
+
+        latEl.textContent = randLat;
+        lngEl.textContent = randLng;
+        if (speedEl) speedEl.textContent = randSpeed;
+        if (timeEl) timeEl.textContent = new Date().toISOString();
+      }
+    }, 2000);
+
+    /* 5. 3D 16-Bit Retrowave Bus Rendering */
+    (function init3DBus() {
+      const container = document.getElementById('footer-bus-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      const width = Math.max(1, container.clientWidth);
+      const height = Math.max(1, container.clientHeight);
+
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
+      } catch {
+        return;
+      }
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+      camera.position.set(14, 10, 16);
+      camera.lookAt(0, 1.6, 0);
+
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(0.45); // 16-bit pixelated rendering
+      renderer.setClearColor(0x000000, 0);
+      renderer.domElement.style.imageRendering = 'pixelated';
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xfff7db, 0.9);
+      dirLight.position.set(15, 25, 12);
+      scene.add(dirLight);
+
+      const fillLight = new THREE.DirectionalLight(0x7395ae, 0.4);
+      fillLight.position.set(-10, 10, -10);
+      scene.add(fillLight);
+
+      // Sign texture generator
+      const signCanvas = document.createElement('canvas');
+      signCanvas.width = 256;
+      signCanvas.height = 48;
+      const ctx = signCanvas.getContext('2d');
+      ctx.fillStyle = '#05070a';
+      ctx.fillRect(0, 0, 256, 48);
+      ctx.font = 'bold 24px "Space Mono", monospace';
+      ctx.fillStyle = '#ffbb00';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowColor = '#ffbb00';
+      ctx.shadowBlur = 4;
+      ctx.fillText("CAMPUS EXPRESS", 128, 24);
+
+      const signTexture = new THREE.CanvasTexture(signCanvas);
+      signTexture.magFilter = THREE.NearestFilter;
+      signTexture.minFilter = THREE.NearestFilter;
+
+      // Base Materials
+      const currentBusColor = 0xF5B800; // School Yellow
+      const currentTrimColor = 0xD99B00;
+
+      const bodyMat = new THREE.MeshStandardMaterial({ color: currentBusColor, roughness: 0.4, metalness: 0.1, flatShading: true });
+      const trimMat = new THREE.MeshStandardMaterial({ color: currentTrimColor, roughness: 0.5, metalness: 0.1, flatShading: true });
+      const chassisMat = new THREE.MeshStandardMaterial({ color: 0x22252a, roughness: 0.8, metalness: 0.2, flatShading: true });
+      const bumperMat = new THREE.MeshStandardMaterial({ color: 0x111317, roughness: 0.7, metalness: 0.3, flatShading: true });
+      const windowMat = new THREE.MeshStandardMaterial({ color: 0x4aa3df, roughness: 0.1, metalness: 0.6, transparent: true, opacity: 0.85, flatShading: true });
+      const headlightMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const taillightMat = new THREE.MeshBasicMaterial({ color: 0xff2222 });
+      const amberMat = new THREE.MeshBasicMaterial({ color: 0xffa500 });
+      const tireMat = new THREE.MeshStandardMaterial({ color: 0x1a1c20, roughness: 0.9, flatShading: true });
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xd0d5dd, roughness: 0.3, metalness: 0.8, flatShading: true });
+
+      const busGroup = new THREE.Group();
+
+      // Chassis
+      const chassisGeo = new THREE.BoxGeometry(8.2, 0.4, 2.7);
+      const chassis = new THREE.Mesh(chassisGeo, chassisMat);
+      chassis.position.set(0, 0.8, 0);
+      busGroup.add(chassis);
+
+      // Cabin
+      const cabinGeo = new THREE.BoxGeometry(6.6, 2.5, 2.7);
+      const cabin = new THREE.Mesh(cabinGeo, bodyMat);
+      cabin.position.set(-0.8, 2.15, 0);
+      busGroup.add(cabin);
+
+      // Roof
+      const roofGeo = new THREE.BoxGeometry(6.8, 0.3, 2.5);
+      const roof = new THREE.Mesh(roofGeo, trimMat);
+      roof.position.set(-0.8, 3.45, 0);
+      busGroup.add(roof);
+
+      // Lower Skirt Stripes
+      const skirtGeo = new THREE.BoxGeometry(6.65, 0.4, 2.75);
+      const skirt = new THREE.Mesh(skirtGeo, trimMat);
+      skirt.position.set(-0.8, 1.1, 0);
+      busGroup.add(skirt);
+
+      // Hood
+      const hoodGeo = new THREE.BoxGeometry(1.6, 1.5, 2.5);
+      const hood = new THREE.Mesh(hoodGeo, bodyMat);
+      hood.position.set(3.3, 1.65, 0);
+      busGroup.add(hood);
+
+      // Grille
+      const grilleGeo = new THREE.BoxGeometry(0.1, 1.0, 1.8);
+      const grilleMat = new THREE.MeshStandardMaterial({ color: 0x0a0c10, roughness: 0.9 });
+      const grille = new THREE.Mesh(grilleGeo, grilleMat);
+      grille.position.set(4.15, 1.55, 0);
+      busGroup.add(grille);
+
+      // Bumpers
+      const frontBumperGeo = new THREE.BoxGeometry(0.4, 0.45, 2.9);
+      const frontBumper = new THREE.Mesh(frontBumperGeo, bumperMat);
+      frontBumper.position.set(4.2, 0.8, 0);
+      busGroup.add(frontBumper);
+
+      const rearBumperGeo = new THREE.BoxGeometry(0.4, 0.45, 2.9);
+      const rearBumper = new THREE.Mesh(rearBumperGeo, bumperMat);
+      rearBumper.position.set(-4.2, 0.8, 0);
+      busGroup.add(rearBumper);
+
+      // Windshield & rear window
+      const windshieldGeo = new THREE.BoxGeometry(0.1, 1.1, 2.4);
+      const windshield = new THREE.Mesh(windshieldGeo, windowMat);
+      windshield.position.set(2.55, 2.7, 0);
+      busGroup.add(windshield);
+
+      const rearWindowGeo = new THREE.BoxGeometry(0.1, 1.0, 1.8);
+      const rearWindow = new THREE.Mesh(rearWindowGeo, windowMat);
+      rearWindow.position.set(-4.15, 2.7, 0);
+      busGroup.add(rearWindow);
+
+      // Side Windows
+      [-3.3, -2.0, -0.7, 0.6, 1.9].forEach(x => {
+        const sideWin = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.9, 0.08), windowMat);
+        sideWin.position.set(x, 2.65, -1.36);
+        busGroup.add(sideWin);
+      });
+      [-3.3, -2.0, -0.7, 0.6].forEach(x => {
+        const sideWin = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.9, 0.08), windowMat);
+        sideWin.position.set(x, 2.65, 1.36);
+        busGroup.add(sideWin);
+      });
+
+      // Passenger Entry Door
+      const doorGeo = new THREE.BoxGeometry(0.85, 1.9, 0.1);
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x22252a, roughness: 0.5, metalness: 0.3 });
+      const doorMesh = new THREE.Mesh(doorGeo, doorMat);
+      doorMesh.position.set(1.9, 1.95, 1.36);
+      const doorGlass = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.8, 0.12), windowMat);
+      doorGlass.position.set(0, 0.35, 0);
+      doorMesh.add(doorGlass);
+      busGroup.add(doorMesh); // Config: Door closed
+
+      // LED Sign
+      const signMat = new THREE.MeshBasicMaterial({ map: signTexture });
+      const signMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 2.0), signMat);
+      signMesh.position.set(2.56, 3.35, 0);
+      busGroup.add(signMesh);
+
+      // Lights
+      const hlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.35, 0.45), headlightMat);
+      hlLeft.position.set(4.12, 1.6, 0.85);
+      const hlRight = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.35, 0.45), headlightMat);
+      hlRight.position.set(4.12, 1.6, -0.85);
+      busGroup.add(hlLeft, hlRight);
+
+      // SpotLights (Headlights Enabled Initially)
+      const targetL = new THREE.Object3D(); targetL.position.set(12, 0, 0.85); busGroup.add(targetL);
+      const headlightL = new THREE.SpotLight(0xfff4d4, 2.5, 18, Math.PI / 6, 0.4, 1);
+      headlightL.position.set(4.2, 1.6, 0.85); headlightL.target = targetL; busGroup.add(headlightL);
+
+      const targetR = new THREE.Object3D(); targetR.position.set(12, 0, -0.85); busGroup.add(targetR);
+      const headlightR = new THREE.SpotLight(0xfff4d4, 2.5, 18, Math.PI / 6, 0.4, 1);
+      headlightR.position.set(4.2, 1.6, -0.85); headlightR.target = targetR; busGroup.add(headlightR);
+
+      // Taillights
+      const tlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.3, 0.4), taillightMat);
+      tlLeft.position.set(-4.12, 1.3, 1.0);
+      const tlRight = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.3, 0.4), taillightMat);
+      tlRight.position.set(-4.12, 1.3, -1.0);
+      busGroup.add(tlLeft, tlRight);
+
+      // Wheels
+      const tireGeo = new THREE.CylinderGeometry(0.65, 0.65, 0.4, 8); tireGeo.rotateX(Math.PI / 2);
+      const rimGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.42, 8); rimGeo.rotateX(Math.PI / 2);
+      const hubGeo = new THREE.BoxGeometry(0.15, 0.15, 0.45);
+
+      [{x: 2.6, z: 1.4}, {x: 2.6, z: -1.4}, {x: -2.3, z: 1.4}, {x: -2.3, z: -1.4}].forEach(pos => {
+        const wheel = new THREE.Group();
+        wheel.position.set(pos.x, 0.65, pos.z);
+        wheel.add(new THREE.Mesh(tireGeo, tireMat));
+        wheel.add(new THREE.Mesh(rimGeo, rimMat));
+        wheel.add(new THREE.Mesh(hubGeo, bodyMat));
+        busGroup.add(wheel);
+      });
+
+      // Roof Details (AC Unit & Flashers)
+      const roofGroupEquip = new THREE.Group();
+      const acUnit = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.35, 1.2), chassisMat);
+      acUnit.position.set(-0.8, 3.75, 0);
+      roofGroupEquip.add(acUnit);
+
+      const flashLocations = [{x: 2.4, z: 1.1}, {x: 2.4, z: -1.1}, {x: -4.0, z: 1.1}, {x: -4.0, z: -1.1}];
+      flashLocations.forEach(loc => {
+        const flasher = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), amberMat);
+        flasher.position.set(loc.x, 3.65, loc.z);
+        roofGroupEquip.add(flasher);
+      });
+      busGroup.add(roofGroupEquip);
+
+      // Side Mirrors & Stop Sign
+      const mirrorGroup = new THREE.Group();
+      const mLeft = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 0.25), chassisMat);
+      mLeft.position.set(3.4, 2.3, 1.45);
+      const mRight = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 0.25), chassisMat);
+      mRight.position.set(3.4, 2.3, -1.45);
+      mirrorGroup.add(mLeft, mRight);
+
+      const stopSign = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.45, 0.06), new THREE.MeshStandardMaterial({ color: 0xcc1111, roughness: 0.3, flatShading: true }));
+      stopSign.position.set(0.8, 2.0, -1.4);
+      mirrorGroup.add(stopSign);
+      busGroup.add(mirrorGroup);
+
+      // Add to Scene
+      scene.add(busGroup);
+
+      // Road Base
+      const roadGroup = new THREE.Group();
+
+      const roadGeo = new THREE.PlaneGeometry(60, 14); // X length is 60, Z width is 14
+      const roadMat = new THREE.MeshStandardMaterial({
+        color: 0x1a1a1a,
+        roughness: 0.9,
+        metalness: 0.1
+      });
+      const road = new THREE.Mesh(roadGeo, roadMat);
+      road.rotation.x = -Math.PI / 2; // Flat on the ground
+      road.position.y = 0; // Ground level
+      roadGroup.add(road);
+
+      // Yellow solid edge lines
+      const yellowLineMat = new THREE.MeshStandardMaterial({ color: 0xF5B800, roughness: 0.8 });
+      const edgeLineGeo = new THREE.PlaneGeometry(60, 0.2);
+
+      const lineLeft = new THREE.Mesh(edgeLineGeo, yellowLineMat);
+      lineLeft.rotation.x = -Math.PI / 2;
+      lineLeft.position.set(0, 0.02, 6);
+
+      const lineRight = new THREE.Mesh(edgeLineGeo, yellowLineMat);
+      lineRight.rotation.x = -Math.PI / 2;
+      lineRight.position.set(0, 0.02, -6);
+
+      roadGroup.add(lineLeft);
+      roadGroup.add(lineRight);
+
+      // White dashed center line
+      const dashes = [];
+      const whiteLineMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 });
+      const dashGeo = new THREE.PlaneGeometry(1.5, 0.2);
+      for(let i = -30; i < 30; i += 3) {
+          const dash = new THREE.Mesh(dashGeo, whiteLineMat);
+          dash.rotation.x = -Math.PI / 2;
+          dash.position.set(i, 0.02, 0);
+          roadGroup.add(dash);
+          dashes.push(dash);
+      }
+
+      scene.add(roadGroup);
+
+      // Orbit Controls State
+      let isDragging = false;
+      let isMoved = false; // To distinguish between drag and simple click
+      let prevMousePos = { x: 0, y: 0 };
+      let spherical = { radius: 13, theta: 0.75, phi: 1.1 };
+      const target = new THREE.Vector3(0, 1.6, 0);
+
+      function updateCamera() {
+        spherical.phi = Math.max(0.1, Math.min(Math.PI / 2 - 0.05, spherical.phi));
+        spherical.radius = Math.max(5, Math.min(30, spherical.radius));
+        camera.position.x = target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+        camera.position.y = target.y + spherical.radius * Math.cos(spherical.phi);
+        camera.position.z = target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+        camera.lookAt(target);
+      }
+      updateCamera();
+
+      // Mouse Events for Orbit
+      const el = renderer.domElement;
+      el.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        isMoved = false;
+        prevMousePos = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        isMoved = true;
+        const deltaX = e.clientX - prevMousePos.x;
+        const deltaY = e.clientY - prevMousePos.y;
+        prevMousePos = { x: e.clientX, y: e.clientY };
+
+        spherical.theta -= deltaX * 0.007;
+        spherical.phi -= deltaY * 0.007;
+        updateCamera();
+      });
+
+      // Click for headlight (only if not dragged)
+      let headlightsOn = true;
+      el.addEventListener('click', () => {
+        if (!isMoved) {
+          headlightsOn = !headlightsOn;
+          headlightMat.color.setHex(headlightsOn ? 0xffffff : 0x4b5563);
+          headlightL.intensity = headlightsOn ? 2.5 : 0;
+          headlightR.intensity = headlightsOn ? 2.5 : 0;
+        }
+      });
+
+      // Animation & Auto-Rotate
+      const clock = new THREE.Clock();
+      function animate3D() {
+        requestAnimationFrame(animate3D);
+
+        const delta = clock.getDelta();
+        const time = clock.getElapsedTime();
+
+        // Drive mode simulation
+        // Spin wheels
+        const wheelSpin = delta * 12;
+        busGroup.children.forEach(child => {
+            if (child.type === 'Group' && child.children.length === 3) {
+                // Determine if it's a wheel group by checking its children's geometries
+                const hasTire = child.children.some(c => c.geometry && c.geometry.type === 'CylinderGeometry');
+                if (hasTire) {
+                    child.rotation.z -= wheelSpin;
+                }
+            }
+        });
+
+        // Subtle engine suspension vibration
+        busGroup.position.y = Math.sin(time * 18) * 0.03;
+
+        // Move road dashes to simulate driving
+        const roadSpeed = delta * 8; // Adjust speed as needed
+        dashes.forEach(dash => {
+            dash.position.x -= roadSpeed;
+            if (dash.position.x < -30) {
+                dash.position.x += 60; // Wrap around to the front
+            }
+        });
+
+        if(!isDragging) {
+            spherical.theta += delta * 0.25; // Auto-orbit camera instead of rotating bus
+            updateCamera();
+        }
+        renderer.render(scene, camera);
+      }
+      animate3D();
+
+      // Handle Resize
+      window.addEventListener('resize', () => {
+        const newWidth = Math.max(1, container.clientWidth);
+        const newHeight = Math.max(1, container.clientHeight);
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+      });
+    })();
+    /* Tilt Card Hover Effect for Consoles (Desktop fine pointer only) */
+    if (isFinePointer) {
+      document.querySelectorAll('.tilt-wrapper').forEach(wrapper => {
+        const card = wrapper.querySelector('.fleet-frame');
+
+        card.style.transformStyle = 'preserve-3d';
+        card.style.willChange = 'transform';
+
+        // Unified spring physics matching Framer (mass: 2, stiffness: 100, damping: 30)
+        const springTransition = 'transform 1.0s cubic-bezier(0.15, 0.85, 0.35, 1)';
+
+        const imgWrapper = card.querySelector('.fleet-img-wrap');
+        if (imgWrapper) {
+          imgWrapper.style.transformStyle = 'preserve-3d';
+          imgWrapper.style.willChange = 'transform';
+        }
+
+        wrapper.addEventListener('mousemove', (e) => {
+          const rect = wrapper.getBoundingClientRect();
+          const offsetX = e.clientX - rect.left - rect.width / 2;
+          const offsetY = e.clientY - rect.top - rect.height / 2;
+
+          const rotateAmplitude = 14;
+          const rotationX = (offsetY / (rect.height / 2)) * -rotateAmplitude;
+          const rotationY = (offsetX / (rect.width / 2)) * rotateAmplitude;
+
+          const perspective = window.innerWidth < 768 ? '1000px' : '800px';
+
+          // Retain the heavy spring interpolation as we move coordinates
+          card.style.transition = springTransition;
+          card.style.transform = `perspective(${perspective}) rotateX(${rotationX}deg) rotateY(${rotationY}deg) scale(1.05)`;
+
+          if (imgWrapper) {
+            imgWrapper.style.transition = springTransition;
+            imgWrapper.style.transform = `translateZ(30px)`;
+          }
+        });
+
+        wrapper.addEventListener('mouseenter', () => {
+          // No more snap! The initial entry scales up beautifully using the massive spring geometry.
+          card.style.transition = springTransition;
+          if (imgWrapper) {
+            imgWrapper.style.transition = springTransition;
+          }
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+          // Settling physics
+          card.style.transition = springTransition;
+          card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)`;
+
+          if (imgWrapper) {
+            imgWrapper.style.transition = springTransition;
+            imgWrapper.style.transform = `translateZ(0px)`;
+          }
+        });
+      });
+    }
+
+  </script>
+</body>
+</html>

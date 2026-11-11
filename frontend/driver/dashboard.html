@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>UniRoute — Driver</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="../css/style.css?v=clean1"/>
+  <link rel="stylesheet" href="../css/driver.css?v=clean1"/>
+</head>
+<body class="dashboard-page" data-mobile-view="panel">
+
+  <!-- ── Mobile Top Bar & View Switcher ───────────────────────── -->
+  <header class="mobile-topbar">
+    <div class="sidebar-brand">
+      <img src="../images/logo-icon.png" alt="UniRoute Logo" class="sidebar-logo-img"/>
+      <span>UniRoute</span>
+      <span class="badge badge-driver">Driver</span>
+    </div>
+    <button type="button" class="btn-logout mobile-logout-btn" id="mobile-btn-logout" title="Logout" aria-label="Logout">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"/></svg>
+    </button>
+  </header>
+
+  <nav class="mobile-tabs" role="tablist" aria-label="Driver dashboard view">
+    <button type="button" class="mobile-tab-btn active" data-mobile-tab="panel" role="tab" aria-selected="true">Setup &amp; Ride</button>
+    <button type="button" class="mobile-tab-btn" data-mobile-tab="map" role="tab" aria-selected="false">
+      Live Map <span class="mobile-tab-badge" id="mobile-stops-count">0</span>
+    </button>
+  </nav>
+
+  <!-- ── Sidebar ─────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <img src="../images/logo-icon.png" alt="UniRoute Logo" class="sidebar-logo-img"/>
+        UniRoute
+      </div>
+    </div>
+
+    <div class="sidebar-body" id="sidebar-body">
+
+      <!-- STATE: setup (before ride starts) -->
+      <div id="state-setup">
+        <p class="section-label">Ride Setup</p>
+
+        <div class="form-group">
+          <label>Route Template</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select id="template-select" style="flex:1;">
+              <option value="">-- Custom Route (Click Map) --</option>
+            </select>
+            <button type="button" id="btn-delete-template" class="btn-ghost btn-delete-template" title="Delete this template" style="display:none;" aria-label="Delete template">
+              <svg viewBox="0 0 20 20" fill="currentColor" style="width:18px;height:18px;"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Bus Number</label>
+          <input id="bus-number" type="text" placeholder="e.g. BUS-07" maxlength="10"/>
+        </div>
+
+        <div class="form-group">
+          <label>Route Name</label>
+          <input id="route-name" type="text" placeholder="e.g. Campus → City Centre"/>
+        </div>
+
+        <p class="section-label">Stops <span id="stop-count-badge" class="stop-count">0 added</span></p>
+
+        <div class="map-hint-inline">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          <span class="map-hint-inline-text">Click anywhere on the map to add a stop</span>
+          <button type="button" class="btn-open-map-inline" id="btn-pick-stops-map">Open Map</button>
+        </div>
+
+        <div id="stop-list" class="stop-list"></div>
+
+        <label class="template-toggle-row" for="save-template-check">
+          <input type="checkbox" class="toggle" id="save-template-check"/>
+          <span class="slider"></span>
+          Save as template
+        </label>
+
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <button class="btn btn-ghost" id="btn-clear-stops">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            Clear Stops
+          </button>
+          <button class="btn btn-primary" id="btn-start-ride">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+            Start Ride
+          </button>
+        </div>
+      </div>
+
+      <!-- STATE: active ride -->
+      <div id="state-active" class="hidden">
+        <p class="section-label">Active Ride</p>
+
+        <div class="ride-info-card">
+          <div class="ride-info-row">
+            <span class="ride-info-label">Bus</span>
+            <span class="ride-info-value" id="active-bus">—</span>
+          </div>
+          <div class="ride-info-row">
+            <span class="ride-info-label">Route</span>
+            <span class="ride-info-value" id="active-route">—</span>
+          </div>
+          <div class="ride-info-row">
+            <span class="ride-info-label">Stops</span>
+            <span class="ride-info-value" id="active-stops">—</span>
+          </div>
+          <div class="ride-info-row">
+            <span class="ride-info-label">GPS</span>
+            <span class="ride-info-value" id="gps-status">
+              <span class="badge badge-live"><span class="badge-dot"></span>Tracking</span>
+            </span>
+          </div>
+          <div class="ride-info-row" style="margin-top:4px; padding-top:8px; border-top:1px solid var(--border);">
+            <span class="ride-info-label">Occupancy</span>
+            <span class="ride-info-value" id="active-occupancy" style="display:flex;align-items:center;gap:6px;">
+              <span id="active-occupancy-text">0 / 40 (0% full)</span>
+              <span class="badge" id="active-occupancy-badge" style="background:rgba(16,185,129,0.15);color:#10b981;font-size:0.75rem;padding:2px 6px;">Available</span>
+            </span>
+          </div>
+        </div>
+
+        <p class="section-label" style="margin-top:18px;">Stops on this ride</p>
+        <div id="active-stop-list" class="stop-list"></div>
+
+        <div style="margin-top:18px;">
+          <button class="btn btn-danger" id="btn-end-ride">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd"/></svg>
+            End Ride
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar" id="user-avatar">D</div>
+        <div>
+          <div class="user-name" id="user-name">Driver</div>
+          <div class="user-role">Bus Driver</div>
+        </div>
+        <button class="btn-logout" id="btn-logout" title="Logout">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Map area ─────────────────────────────────── -->
+  <main class="map-container">
+    <div id="map"></div>
+
+    <!-- floating hint while adding stops -->
+    <div class="map-hint" id="map-hint">
+      Click on the map to add a bus stop
+    </div>
+
+    <!-- floating status bar during active ride -->
+    <div class="map-overlay hidden" id="map-overlay">
+      <div>
+        <div class="map-overlay-label">Current Location</div>
+        <div class="map-overlay-value" id="overlay-coords">Acquiring GPS…</div>
+      </div>
+      <div class="map-overlay-divider"></div>
+      <div>
+        <div class="map-overlay-label">Last Update</div>
+        <div class="map-overlay-value" id="overlay-time">—</div>
+      </div>
+      <div class="map-overlay-divider"></div>
+      <div>
+        <div class="map-overlay-label">Passengers</div>
+        <div class="map-overlay-value" id="overlay-riders" style="color:#10b981;">0 / 40 (0%)</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/driver.js?v=occ2"></script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+/* ── Passenger dashboard extras ─────────────────────── */
+
+.badge-passenger {
+  background: var(--success-muted);
+  color: var(--success);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+@media (prefers-color-scheme: dark) {
+  .badge-passenger {
+    background: rgba(52, 199, 89, 0.2);
+    color: #4ade80;
+  }
+}
+
+/* Section header row (label + action button) */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* Refresh button — Uiverse micro-interaction */
+.refresh-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: var(--shadow-sm);
+}
+.refresh-btn:hover {
+  color: var(--primary);
+  background: var(--surface2);
+  border-color: var(--primary);
+  transform: rotate(45deg);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+}
+.refresh-btn:active { transform: scale(0.9) rotate(180deg); }
+.refresh-btn svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
+.refresh-btn.spinning svg { animation: spin 0.8s cubic-bezier(0.4, 0.1, 0.2, 0.9) infinite; }
+
+/* Back button */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 4px;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.back-btn:hover {
+  opacity: 0.85;
+  transform: translateX(-3px);
+}
+.back-btn:active { transform: translateX(-6px); }
+.back-btn svg { width: 20px; height: 20px; }
+
+/* Route card (in list) — Uiverse-inspired hover elevation & accent edge */
+.route-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1),
+              background 0.2s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  animation: slide-in 0.4s cubic-bezier(0.2, 0, 0, 1) backwards;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.route-card:hover {
+  background: var(--surface2);
+  border-color: var(--border-hover, #a1a1aa);
+  border-left-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.route-card:active {
+  transform: scale(0.98);
+  background: var(--border);
+  transition: transform 0.08s ease;
+}
+.route-card.active {
+  background: var(--accent);
+  border-color: var(--primary);
+  border-left-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary), 0 8px 20px rgba(0, 122, 255, 0.15);
+}
+
+.route-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.route-card-bus {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  background: var(--accent);
+  border: 1px solid rgba(0,122,255,0.2);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+@media (prefers-color-scheme: dark) {
+  .route-card-bus { background: rgba(0, 122, 255, 0.2); color: #4da3ff; }
+}
+.route-card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.route-card-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  animation: fade-up 0.5s cubic-bezier(0.2, 0, 0, 1);
+}
+.empty-state svg {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  color: var(--text-subtle);
+  opacity: 0.6;
+}
+.empty-state p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.empty-state span {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Route detail card (when route selected) */
+.route-detail-card {
+  background: var(--accent);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.1);
+  animation: fade-up 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .route-detail-card { background: rgba(0, 122, 255, 0.15); }
+}
+.route-detail-bus {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+@media (prefers-color-scheme: dark) {
+  .route-detail-bus { color: #66b3ff; }
+}
+.route-detail-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 14px;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.route-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Bus location card */
+.bus-location-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.bus-loc-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+}
+.bus-loc-icon svg { width: 24px; height: 24px; color: #fff; }
+.bus-loc-coords {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.bus-loc-time {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Map placeholder overlay */
+.map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  backdrop-filter: blur(40px);
+  z-index: 500;
+  pointer-events: none;
+  animation: fade-up 0.5s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .map-placeholder { background: rgba(0,0,0,0.8); }
+}
+.map-placeholder-inner {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px;
+}
+.map-placeholder-inner svg {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 24px;
+  color: var(--border-strong);
+}
+.map-placeholder-inner p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Live polling indicator */
+.poll-indicator {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--surface);
+  backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Live Bus Marker with Directional Bearing & Radar Pulse ── */
+.bus-leaflet-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.bus-puck-container {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.bus-pulse-ring {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.65);
+  animation: bus-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes bus-ping {
+  0% { transform: scale(0.8); opacity: 0.95; }
+  75%, 100% { transform: scale(1.7); opacity: 0; }
+}
+
+.bus-rotator {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.bus-arrow-pointer {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 10px;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.bus-arrow-pointer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bus-puck-core {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--primary, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45), 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.bus-puck-container:hover .bus-puck-core {
+  transform: scale(1.12);
+}
+
+.bus-puck-core svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Legacy fallback */
+.bus-marker-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  border: 4px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,122,255,0.4), 0 2px 4px rgba(0,0,0,0.2);
+  animation: bus-float 3s ease-in-out infinite alternate;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bus-marker-icon:hover { transform: scale(1.15); }
+.bus-marker-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+@keyframes bus-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Route detail section fade-in */
+#section-detail { animation: fade-up 0.4s cubic-bezier(0.2, 0, 0, 1); }
+
+/* Stop list in detail view */
+#detail-stop-list {
+  max-height: 280px;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+/* ── Find My Nearest Stop ────────────────────────────── */
+.stops-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.btn-locate-me {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 16px;
+  background: rgba(0, 122, 255, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(0, 122, 255, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.btn-locate-me:hover {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
+  transform: translateY(-1px);
+}
+.btn-locate-me svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+.btn-locate-me.locating {
+  opacity: 0.75;
+  pointer-events: none;
+}
+.btn-locate-me.locating svg {
+  animation: spin 1s linear infinite;
+}
+
+.nearest-stop-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  animation: slide-down 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nearest-banner-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nearest-banner-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.nearest-banner-info {
+  flex: 1;
+  min-width: 0;
+}
+.nearest-banner-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nearest-banner-sub {
+  font-size: 0.78rem;
+  color: #10b981;
+  font-weight: 600;
+  margin-top: 1px;
+}
+.nearest-banner-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  border-radius: 8px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.nearest-banner-close:hover {
+  color: var(--text);
+}
+
+.stop-item.is-nearest {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-left: 3px solid #10b981;
+}
+
+/* Floating Map Locate Action Button (Uiverse FAB) */
+.map-locate-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  background: var(--surface);
+  color: var(--primary);
+  border: 1px solid var(--border-strong);
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(25px);
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.map-locate-btn:hover {
+  background: linear-gradient(135deg, #007aff, #0056b3);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(0, 122, 255, 0.45);
+  transform: translateY(-2px);
+}
+.map-locate-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+.map-locate-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.map-locate-btn.locating {
+  opacity: 0.75;
+  pointer-events: none;
+}
+.map-locate-btn.locating svg {
+  animation: spin 1s linear infinite;
+}
+
+/* Student / You Are Here Marker */
+.student-marker-puck {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.student-pulse {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.35);
+  animation: student-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes student-ping {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.student-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.mobile-view-map-btn,
+.mobile-map-bar {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .route-card { padding: 16px; }
+  .route-detail-card { padding: 18px; }
+  .route-detail-name { font-size: 1.3rem; }
+  .poll-indicator {
+    top: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .mobile-view-map-btn {
+    display: flex;
+    margin-top: 14px;
+  }
+
+  .mobile-map-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 999;
+    background: var(--surface);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 10px 12px;
+    box-shadow: var(--shadow-md);
+  }
+  .mobile-map-bar-info {
+    min-width: 0;
+    flex: 1;
+  }
+  .mobile-map-bar-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .mobile-map-seats {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+  .mobile-map-route {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-map-stops-btn {
+    width: auto !important;
+    min-height: 44px !important;
+    padding: 8px 14px !important;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .leaflet-top.leaflet-left {
+    top: 86px;
+  }
+
+  .map-locate-btn {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    right: 16px;
+  }
+
+  .onboard-toast {
+    bottom: calc(74px + env(safe-area-inset-bottom));
+    left: 16px;
+    right: 16px;
+    transform: none;
+    max-width: calc(100% - 32px);
+    justify-content: center;
+    animation: slideUpToastMobile 0.35s cubic-bezier(0.2, 0, 0, 1);
+  }
+}
+
+@keyframes slideUpToastMobile {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .route-card, #section-detail, .empty-state, .map-placeholder { animation: none; }
+  .bus-marker-icon { animation: none; }
+  .bus-marker-icon:hover { transform: none; }
+  .refresh-btn.spinning svg { animation: none; }
+}
+
+/* ── Seating Occupancy Badges & Dynamic Capacity Bar ── */
+.occupancy-badge {
+  margin-top: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.occupancy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.occupancy-seats {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.occupancy-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #6366f1;
+  opacity: 0.9;
+}
+
+.occupancy-count {
+  white-space: nowrap;
+}
+
+.occupancy-count strong {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.occupancy-percent {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+}
+
+.occupancy-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+@media (prefers-color-scheme: dark) {
+  .occupancy-bar { background: rgba(255, 255, 255, 0.1); }
+}
+
+.occupancy-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+/* Color Statuses for Seating */
+.status-green-bg { background-color: #10b981; }
+.status-green-badge { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+.status-amber-bg { background-color: #f59e0b; }
+.status-amber-badge { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+.status-red-bg { background-color: #ef4444; }
+.status-red-badge { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+/* Floating On-Board Rider Notification Toast */
+.onboard-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25), var(--shadow-lg);
+  backdrop-filter: blur(25px);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  animation: slideUpToast 0.35s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.onboard-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: toastPulse 1.8s infinite;
+}
+
+@keyframes toastPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes slideUpToast {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}

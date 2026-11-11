@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: uniroute-bus-backend
+    env: docker
+    region: oregon
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
