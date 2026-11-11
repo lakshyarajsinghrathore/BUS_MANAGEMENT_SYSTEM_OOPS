@@ -1,0 +1,24 @@
+# Compiled binaries & object files
+*.exe
+*.o
+*.dll
+bus_server
+
+# Local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment & credentials
+.env
+.env.*
+!.env.example
+
+# IDE / Agent / Local scratch files
+.claude/
+.vscode/
+.idea/
+.DS_Store
+trip_log.txt
+inspect_chat.py
+screenshots/test*
